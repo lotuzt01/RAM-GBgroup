@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palmcore Pro - Dashboard Regional Bengkulu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --palm-primary: #2e7d32;
+      --palm-secondary: #4caf50;
+      --palm-bg: #f4fff4;
+    }
+    body { background-color: var(--palm-bg); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(46, 125, 50, 0.1);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .status-badge {
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    .kriteria-card {
+      border-left: 4px solid #f59e0b;
+      background: linear-gradient(to right, #fffdf5, #ffffff);
+    }
+    .do-badge {
+      font-size: 0.65rem;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .price-up { color: #059669; font-weight: 800; }
+  </style>
+</head>
+<body class="min-h-screen pb-12">
+
+  <!-- Header -->
+  <header class="bg-[#2e7d32] text-white shadow-lg overflow-hidden">
+    <div class="container mx-auto px-4 py-6 relative">
+      <div class="relative z-10 flex flex-col md:flex-row justify-between items-center">
+        <div class="text-center md:text-left mb-4 md:mb-0">
+          <h1 class="text-3xl font-extrabold flex items-center gap-2">
+            <i class="fas fa-seedling"></i> PALMCORE PRO
+          </h1>
+          <p class="text-green-100 font-light mt-1 text-sm md:text-base tracking-wide">Monitoring Lintas PKS & RAM Bengkulu</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div id="weatherWidget" class="bg-white/10 px-4 py-2 rounded-xl flex items-center gap-3 border border-white/20">
+            <i class="fas fa-sun text-yellow-300 text-xl animate-pulse"></i>
+            <div class="text-left">
+              <div class="text-[10px] font-bold uppercase leading-none opacity-80">Cuaca Wilayah</div>
+              <div class="text-sm font-mono">Cerah Berawan</div>
+            </div>
+          </div>
+          <div id="authStatus" class="hidden md:block bg-green-800/40 px-3 py-2 rounded-lg text-[10px] font-mono border border-green-700">
+            Syncing...
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-[#4caf50] shadow-md">
+    <div class="container mx-auto flex overflow-x-auto whitespace-nowrap scrollbar-hide py-1">
+      <a href="#beranda" class="px-6 py-3 text-white font-semibold hover:bg-green-700 transition">Beranda</a>
+      <a href="#kriteria" class="px-6 py-3 text-white font-semibold hover:bg-green-700 transition">Kriteria TBS</a>
+      <a href="#seluma-selatan" class="px-6 py-3 text-white font-semibold hover:bg-green-700 transition border-b-4 border-white">Kab. Seluma</a>
+      <a href="#harga-lokal" class="px-6 py-3 text-white font-semibold hover:bg-green-700 transition">Harga RAM Desa</a>
+      <a href="#bengkulu-utara" class="px-6 py-3 text-white font-semibold hover:bg-green-700 transition">Bengkulu Utara</a>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-4 mt-6 space-y-8">
+    
+    <!-- Kriteria Penerimaan TBS -->
+    <section id="kriteria" class="glass-card kriteria-card rounded-2xl p-6 shadow-md border border-amber-100">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex items-start gap-4">
+          <div class="bg-amber-100 p-4 rounded-full text-amber-600">
+            <i class="fas fa-exclamation-triangle text-2xl"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-800 uppercase tracking-tight">Kriteria Penerimaan TBS RAM</h3>
+            <p class="text-gray-600 text-sm mt-1 leading-relaxed">
+              Standar minimal: <strong>Berat 7kg keatas, Kondisi Masak, dan Buah Segar</strong>.
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="bg-white border border-amber-200 px-4 py-2 rounded-xl flex items-center gap-3">
+            <i class="fas fa-weight-hanging text-amber-500"></i>
+            <span class="text-xs font-black text-gray-700">MIN. 7KG+</span>
+          </div>
+          <div class="bg-white border border-amber-200 px-4 py-2 rounded-xl flex items-center gap-3">
+            <i class="fas fa-fire text-amber-500"></i>
+            <span class="text-xs font-black text-gray-700">MASAK</span>
+          </div>
+          <div class="bg-white border border-amber-200 px-4 py-2 rounded-xl flex items-center gap-3">
+            <i class="fas fa-leaf text-amber-500"></i>
+            <span class="text-xs font-black text-gray-700">SEGAR</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kabupaten Seluma (Update Spesifik) -->
+    <section id="seluma-selatan" class="glass-card rounded-2xl overflow-hidden border-t-4 border-orange-500 shadow-lg">
+      <div class="bg-white px-6 py-4 border-b flex justify-between items-center">
+        <h2 class="font-bold text-gray-800 flex items-center gap-2 uppercase text-sm tracking-widest">
+          <i class="fas fa-map-pin text-orange-500"></i> Monitoring Harga PKS Seluma
+        </h2>
+        <span class="status-badge bg-orange-100 text-orange-700">Terupdate</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-gray-50 text-[10px] text-gray-400 uppercase font-bold tracking-widest">
+            <tr>
+              <th class="px-6 py-4">Pabrik (PKS)</th>
+              <th class="px-6 py-4">Keterangan</th>
+              <th class="px-6 py-4 text-right">Harga (Rp)</th>
+              <th class="px-6 py-4 text-center">Trend</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <!-- PT. Agri Andalas -->
+            <tr class="hover:bg-orange-50 transition">
+              <td class="px-6 py-4 font-bold text-gray-800">PT. Agri Andalas</td>
+              <td class="px-6 py-4 text-gray-500 text-xs italic">Update Terbaru</td>
+              <td class="px-6 py-4 text-right font-black text-green-700 text-lg">3.070</td>
+              <td class="px-6 py-4 text-center text-green-500"><i class="fas fa-arrow-up"></i></td>
+            </tr>
+            <!-- PT. SSL (NEW UPDATE) -->
+            <tr class="hover:bg-orange-50 transition bg-green-50/30">
+              <td class="px-6 py-4 font-bold text-gray-800 text-green-700">PT. SSL</td>
+              <td class="px-6 py-4 text-gray-500 text-xs italic">Update Terbaru</td>
+              <td class="px-6 py-4 text-right font-black text-green-700 text-lg">3.000</td>
+              <td class="px-6 py-4 text-center text-green-500"><i class="fas fa-arrow-up"></i></td>
+            </tr>
+            <!-- PT. AIP Section -->
+            <tr class="hover:bg-orange-50 transition bg-orange-50/10">
+              <td class="px-6 py-4 font-bold text-gray-800" rowspan="2">PT. AIP</td>
+              <td class="px-6 py-4"><span class="do-badge bg-blue-100 text-blue-700">D.O NOVIE A</span></td>
+              <td class="px-6 py-4 text-right font-black text-green-700 text-lg">3.200</td>
+              <td class="px-6 py-4 text-center text-green-500"><i class="fas fa-arrow-up"></i></td>
+            </tr>
+            <tr class="hover:bg-orange-50 transition bg-orange-50/10">
+              <td class="px-6 py-4"><span class="do-badge bg-gray-100 text-gray-700">D.O NOVIE B</span></td>
+              <td class="px-6 py-4 text-right font-black text-green-700 text-lg">3.090</td>
+              <td class="px-6 py-4 text-center text-green-500"><i class="fas fa-arrow-up"></i></td>
+            </tr>
+            <!-- PT. BSL -->
+            <tr class="hover:bg-orange-50 transition">
+              <td class="px-6 py-4 font-bold text-gray-800">PT. BSL (Bengkulu Sawit Lestari)</td>
+              <td class="px-6 py-4 text-gray-500 text-xs italic">Update Terbaru</td>
+              <td class="px-6 py-4 text-right font-black text-green-700 text-lg">2.970</td>
+              <td class="px-6 py-4 text-center text-green-500"><i class="fas fa-arrow-up"></i></td>
+            </tr>
+            <!-- PT. MSS Sendawar -->
+            <tr class="hover:bg-orange-50 transition">
+              <td class="px-6 py-4 font-bold text-gray-800">PT. MSS Sendawar</td>
+              <td class="px-6 py-4 text-gray-500 text-xs italic">Harga Reguler</td>
+              <td class="px-6 py-4 text-right font-black text-green-700 text-lg">2.970</td>
+              <td class="px-6 py-4 text-center text-green-500"><i class="fas fa-arrow-up"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Local RAM Prices (Air Latak & Ngalam) -->
+    <section id="harga-lokal" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="glass-card rounded-3xl p-6 relative overflow-hidden border-2 border-green-500 shadow-md">
+        <div class="relative z-10">
+          <span class="status-badge bg-green-600 text-white mb-2 inline-block">RAM AGS</span>
+          <h2 class="text-xl font-bold text-gray-800">Desa Air Latak</h2>
+          <div class="text-5xl font-black text-[#2e7d32] tracking-tighter mt-2">Rp 2.930</div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-3xl p-6 relative overflow-hidden border-2 border-blue-500 shadow-md">
+        <div class="relative z-10">
+          <span class="status-badge bg-blue-600 text-white mb-2 inline-block">RAM SGS</span>
+          <h2 class="text-xl font-bold text-gray-800">SP.3 Ngalam</h2>
+          <div class="text-5xl font-black text-blue-700 tracking-tighter mt-2">Rp 3.010</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Global Update Control -->
+    <section id="harga" class="glass-card rounded-2xl p-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="font-bold text-gray-700 flex items-center gap-2 uppercase text-xs tracking-widest mb-2">
+            <i class="fas fa-broadcast-tower text-green-600"></i> Kontrol Broadcast
+          </h3>
+          <p class="text-xs text-gray-500">Input harga rata-rata untuk sinkronisasi agen lapangan.</p>
+        </div>
+        <div class="flex gap-3">
+          <input type="number" id="newPrice" placeholder="Harga" 
+            class="flex-1 px-4 py-3 rounded-xl border-0 ring-1 ring-gray-200 focus:ring-2 focus:ring-green-500 outline-none font-bold">
+          <button onclick="updatePriceInDb()" id="updateBtn"
+            class="bg-[#2e7d32] text-white font-bold px-6 py-3 rounded-xl hover:bg-green-800 transition shadow-md whitespace-nowrap">
+            Update Cloud
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="mt-12 text-center text-gray-500 px-4">
+    <div class="border-t border-green-200 pt-6 max-w-lg mx-auto">
+      <p class="font-black text-[#2e7d32] text-lg uppercase">Palmcore Pro</p>
+      <p id="lastUpdated" class="text-[10px] mt-1 opacity-60">Sinkronisasi Cloud Aktif...</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+    const firebaseConfig = JSON.parse(__firebase_config);
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'palmcore-bengkulu-full';
+
+    const lastUpdateDisplay = document.getElementById("lastUpdated");
+    const updateBtn = document.getElementById("updateBtn");
+    const authStatus = document.getElementById("authStatus");
+
+    async function startAuth() {
+      try { await signInAnonymously(auth); } catch (err) { authStatus.textContent = "Offline"; }
+    }
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        authStatus.textContent = `ONLINE: ${user.uid.substring(0,4)}`;
+        listenToPrice();
+      }
+    });
+
+    function listenToPrice() {
+      const priceDoc = doc(db, 'artifacts', appId, 'public', 'data', 'unified_price');
+      onSnapshot(priceDoc, (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.data();
+          lastUpdateDisplay.innerHTML = `SINKRONISASI CLOUD: ${new Date(data.timestamp).toLocaleTimeString('id-ID')} WIB`;
+        }
+      }, (err) => console.error(err));
+    }
+
+    window.updatePriceInDb = async function() {
+      const input = document.getElementById("newPrice");
+      const val = parseInt(input.value);
+      if (!val || val < 500) return;
+      updateBtn.disabled = true;
+      try {
+        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'unified_price'), {
+          value: val, timestamp: Date.now(), region: "Regional Bengkulu"
+        });
+        input.value = "";
+      } catch (err) { console.error(err); } finally { updateBtn.disabled = false; }
+    };
+
+    startAuth();
+  </script>
+</body>
+</html>
+
